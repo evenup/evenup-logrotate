@@ -1,8 +1,7 @@
 What is it?
 ===========
 
-A Puppet module that manages rubygems to resolve the issue where multiple
-modules need the same gem.
+A Puppet module that manages logrotate and associated rules
 
 Released under the Apache 2.0 licence
 
@@ -11,12 +10,19 @@ Usage:
 
 To install:
 <pre>
-  include ruby
+  include logrotate
 </pre>
 
-To include an additional gem:
+To add a logrotate config file:
 <pre>
-  include ruby::httparty
+  logrotate::file {
+    'puppet':
+      log         => '/var/log/puppet/*log',
+      options     => [ 'missingok', 'notifempty', 'create 0644 puppet puppet', 'sharedscripts', 'weekly' ],
+       postrotate  => [  '[ -e /etc/init.d/puppetmaster ] && /etc/init.d/puppetmaster condrestart >/dev/null 2>&1 || true',
+                         '[ -e /etc/init.d/puppet ] && /etc/init.d/puppet reload > /dev/null 2>&1 || true' ],
+       ensure      => 'present';
+  }
 </pre>
 
 
@@ -30,3 +36,4 @@ Contribute:
 * Improve/fix (with spec tests)
 * Push new topic branch
 * Submit a PR
+
