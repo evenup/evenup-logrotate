@@ -4,8 +4,13 @@
 <% scope.lookupvar('options').each do |opt| -%> <%= opt %>
 <% end -%>
 <% if scope.lookupvar('postrotate') != "NONE" -%> postrotate
-<% scope.lookupvar('postrotate').each do |post| -%>   <%= post %>
-<% end -%>
- endscript
+<%   if scope.lookupvar('postrotate').is_a?(Array) -%>
+<%     scope.lookupvar('postrotate').each do |post| -%>
+  <%= post %>
+<%     end -%>
+<%   else -%>
+  <%=  scope.lookupvar('postrotate') %>
+<%   end -%>
+endscript
 <% end -%>
 }
