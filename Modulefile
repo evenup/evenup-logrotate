@@ -1,5 +1,5 @@
 name 'evenup-logrotate'
-version '1.0.2'
+version '1.0.3'
 author 'Justin Lambert <jlambert@letsevenup.com>'
 license 'Apache'
 summary 'Manages logrotate.'
