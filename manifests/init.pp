@@ -5,7 +5,11 @@
 # Sample Usage:
 #   include logrotate
 #
-class logrotate {
+class logrotate (
+  $rotate_every = 'weekly', # daily, weekly, monthly
+  $rotate = 4,
+  $compress = 'compress'
+) {
 
   package {
     'logrotate':
@@ -19,6 +23,13 @@ class logrotate {
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
+      require => Package['logrotate'];
+    '/etc/logrotate.conf':
+      ensure  => 'file',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('logrotate/logrotate.conf.erb'),
       require => Package['logrotate'];
   }
 }
