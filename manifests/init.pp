@@ -28,7 +28,7 @@ class logrotate (
       ensure  => 'file',
       owner   => 'root',
       group   => 'root',
-      mode    => '0644',
+      mode    => '0444',
       content => template('logrotate/logrotate.conf.erb'),
       require => Package['logrotate'];
   }
