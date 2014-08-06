@@ -29,7 +29,7 @@ define logrotate::file( $log, $options, $postrotate = 'NONE', $ensure = 'present
       ensure  => $ensure,
       owner   => 'root',
       group   => 'root',
-      mode    => '0644',
+      mode    => '0444',
       content => template('logrotate/logrotate.tpl'),
   }
 }
