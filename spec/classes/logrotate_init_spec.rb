@@ -14,7 +14,7 @@ describe 'logrotate', :type => :class do
       'ensure' => 'file',
       'owner'  => 'root',
       'group'  => 'root',
-      'mode'   => '0644'
+      'mode'   => '0444'
     )}
 
   end
