@@ -1,3 +1,5 @@
+20140815 v1.1.0
+  Manage logrotate.conf
   Rake task update
 v1.0.3:
   Fixes for ruby 1.9.3 - Strings/Arrays in the template
