@@ -15,11 +15,11 @@ dateext
 <%= @compress %>
 
 <% if scope.lookupvar('logrotate::options').is_a?(Array) -%>
-  <% scope.lookupvar('logrotate::options').each do |opt| -%>
-  <%= opt %>
-  <% end -%>
+<% scope.lookupvar('logrotate::options').each do |opt| -%>
+<%= opt %>
+<% end -%>
 <% else -%>
-  <%= scope.lookupvar('logrotate::options') %>
+<%= scope.lookupvar('logrotate::options') %>
 <% end -%>
 
 # RPM packages drop log rotation information into this directory
