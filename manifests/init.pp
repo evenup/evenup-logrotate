@@ -8,7 +8,8 @@
 class logrotate (
   $rotate_every = 'weekly', # daily, weekly, monthly
   $rotate = 4,
-  $compress = 'compress'
+  $compress = 'compress',
+  $options = []
 ) {
 
   package { 'logrotate':
