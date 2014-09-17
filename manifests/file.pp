@@ -25,7 +25,7 @@ define logrotate::file(
   $log,
   $options,
   $ensure = 'present',
-  $postrotate = 'NONE',
+  $postrotate = 'NONE'
 ) {
   require logrotate
 
