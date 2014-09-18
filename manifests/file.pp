@@ -21,15 +21,19 @@
 #       ensure      => 'present';
 #   }
 #
-define logrotate::file( $log, $options, $postrotate = 'NONE', $ensure = 'present' ) {
+define logrotate::file(
+  $log,
+  $options,
+  $ensure = 'present',
+  $postrotate = 'NONE'
+) {
   require logrotate
 
-  file {
-    "/etc/logrotate.d/${name}":
-      ensure  => $ensure,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0444',
-      content => template('logrotate/logrotate.tpl'),
+  file { "/etc/logrotate.d/${name}":
+    ensure  => $ensure,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0444',
+    content => template('logrotate/logrotate.tpl'),
   }
 }

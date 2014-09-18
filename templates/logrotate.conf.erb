@@ -14,6 +14,14 @@ dateext
 # uncomment this if you want your log files compressed
 <%= @compress %>
 
+<% if scope.lookupvar('logrotate::options').is_a?(Array) -%>
+<% scope.lookupvar('logrotate::options').each do |opt| -%>
+<%= opt %>
+<% end -%>
+<% else -%>
+<%= scope.lookupvar('logrotate::options') %>
+<% end -%>
+
 # RPM packages drop log rotation information into this directory
 include /etc/logrotate.d
 
