@@ -1,3 +1,6 @@
+20141029 - v1.2.0
+  Additional options in logrotate.conf (saz)
+  Newline in logrotate.tpl (overholw)
 20140815 v1.1.0
   Manage logrotate.conf
   Rake task update
