@@ -9,7 +9,8 @@ class logrotate (
   $rotate_every = 'weekly', # daily, weekly, monthly
   $rotate = 4,
   $compress = 'compress',
-  $options = []
+  $options = [],
+  $files = {}
 ) {
 
   package { 'logrotate':
@@ -33,4 +34,6 @@ class logrotate (
     content => template('logrotate/logrotate.conf.erb'),
     require => Package['logrotate'],
   }
+
+  create_resources(::logrotate::file, $logrotate::files)
 }

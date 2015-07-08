@@ -27,7 +27,11 @@ define logrotate::file(
   $ensure = 'present',
   $postrotate = 'NONE'
 ) {
-  require logrotate
+  if !defined( Class[ 'logrotate' ] ) {
+    fail("require logrotate to run")
+  }
+  
+
 
   file { "/etc/logrotate.d/${name}":
     ensure  => $ensure,
