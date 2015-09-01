@@ -29,5 +29,21 @@ describe 'logrotate::file', :type => :define do
     it { should contain_file('/etc/logrotate.d/foo').with_ensure('absent') }
   end
 
+  context "when setting template parameter" do
+    let(:params) { { :log => '/var/log/foo.log', :template => "logrotate/spec.erb", :options => { 'opt_a' => 'value_a' } } }
 
+    it 'should generate a valid template' do
+      content = catalogue.resource('file', '/etc/logrotate.d/foo').send(:parameters)[:content]
+      content.should match "template: logrotate/spec.erb"
+    end
+    it 'should generate a template that uses custom options' do
+      content = catalogue.resource('file', '/etc/logrotate.d/foo').send(:parameters)[:content]
+      content.should match "value_a"
+    end
+  end
+
+  context "when setting source parameter" do
+    let(:params) { { :log => '/var/log/foo.log', :source => "puppet:///modules/logrotate/spec", :options => { 'opt_a' => 'value_a' } } }
+    it { should contain_file('/etc/logrotate.d/foo').with_source('puppet:///modules/logrotate/spec') }
+  end
 end
