@@ -1,3 +1,5 @@
+20150917 - v1.4.0
+  Add file interface to logrotate and logrotate::file (adepretis)
 20150512 - v1.3.0
   Testing updates/puppet4 support
 20141029 - v1.2.0
