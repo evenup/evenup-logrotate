@@ -24,16 +24,29 @@
 define logrotate::file(
   $log,
   $options,
-  $ensure = 'present',
-  $postrotate = 'NONE'
+  $ensure     = 'present',
+  $postrotate = 'NONE',
+  $template   = 'logrotate/logrotate.tpl',
+  $source     = undef,
 ) {
   require logrotate
+
+  $manage_file_source = $source ? {
+    ''        => undef,
+    default   => $source,
+  }
+
+  $manage_file_content = $template ? {
+    ''        => undef,
+    default   => template($template),
+  }
 
   file { "/etc/logrotate.d/${name}":
     ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    content => template('logrotate/logrotate.tpl'),
+    content => $manage_file_content,
+    source  => $manage_file_source,
   }
 }
