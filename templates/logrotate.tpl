@@ -1,6 +1,11 @@
 # File maintained by puppet, do not modify
-
-<%= scope.lookupvar('log') %> {
+<%
+ files=scope.lookupvar('log')
+ if defined? files.join
+  files=files.join("\n")
+ end
+%>
+<%= files %> {
 <% if scope.lookupvar('options').is_a?(Array) -%>
 <%   scope.lookupvar('options').each do |opt| -%>
   <%= opt %>

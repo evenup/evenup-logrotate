@@ -1,6 +1,6 @@
 {
   "name": "evenup-logrotate",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": "Justin Lambert <jlambert@letsevenup.com>",
   "license": "Apache-2.0",
   "summary": "Manages logrotate",
